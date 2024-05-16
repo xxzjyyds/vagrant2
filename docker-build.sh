@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # DcokerFile File
-tee Dockerfile > /docker/DockerFile <<EOF
+tee /docker/DockerFile <<EOF
 FROM alpine:3.17.6
 
 # 指定command环境变量
