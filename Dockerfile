@@ -22,7 +22,7 @@ ENV PYTHON_PIP_VERSION=22.3.1
 ENV PYTHON_SETUPTOOLS_VERSION=65.5.1
 
 # python pip download url
-ENV PYTHON_GET_PIP_URL=hhttps://github.com/pypa/get-pip/raw/dbf0c85f76fb6e1ab42aa672ffca6f0a675d9ee4/public/get-pip.py
+ENV PYTHON_GET_PIP_URL=https://github.com/pypa/get-pip/raw/dbf0c85f76fb6e1ab42aa672ffca6f0a675d9ee4/public/get-pip.py
 
 # pip file sha256 value
 ENV PYTHON_GET_PIP_SHA256=dfe9fd5c28dc98b5ac17979a953ea550cec37ae1b47a5116007395bfacff2ab9
