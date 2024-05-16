@@ -30,4 +30,4 @@ jobs:
       
       - name: Build the Docker image
         run: |
-          docker build . --file Dockerfile -t $DOCKER_IMAGE_VER
+          docker build . --file Dockerfile
