@@ -27,16 +27,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name:  Initializtion envronment
-        run: |
-          sudo mkdir -p /docker
-          sudo chown $USER:$GROUPS /docker
-      - name: direcotory
-        run: |
-          ln -sf /docker $GITHUB_WORKSPACE
       
       - name: Build the Docker image
         run: |
-          ls $GITHUB_WORKSPACE
-          echo $$GITHUB_WORKSPACE
+          sudo $GITHUB_WORKSPACE/$DOCKER_BUILD_SH
