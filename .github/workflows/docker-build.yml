@@ -6,16 +6,12 @@ name: Vargant Ansible Build
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: [ "v2*" ]
     tags:
-      - '*'
-  pull_request:
-    branches: [ "main" ]
+      - 'v*'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-env:
-  DOCKER_IMAGE_VER: Vargant_Ansible:2.14.3
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -29,10 +25,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Build the Docker image
-        run: |
-          docker build . --file Dockerfile
         
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -62,7 +54,7 @@ jobs:
         with:
           context: .
           file: Dockerfile
-          platforms: linux/amd64,linux/arm64/v8
+          platforms: linux/amd64,linux/arm64/v8,linux/386
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
