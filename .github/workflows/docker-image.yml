@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Vargant Ansible Build
 
 on:
   push:
@@ -6,13 +6,24 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  DOCKER_BUILD_SH: docker-build.sh
+
 jobs:
 
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name:  Initializtion envronment
+      run: |
+        sudo mkdir -p /docker
+        ln -sf /docker $GITHUB_WORKSPACE
+      
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: |
+        $GITHUB_WORKSPACE/$DOCKER_BUILD_SH
