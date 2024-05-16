@@ -30,4 +30,4 @@ jobs:
       
       - name: Build the Docker image
         run: |
-          sudo $GITHUB_WORKSPACE/$DOCKER_BUILD_SH
+          $GITHUB_WORKSPACE/$DOCKER_BUILD_SH
