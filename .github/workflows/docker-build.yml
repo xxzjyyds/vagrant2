@@ -31,6 +31,9 @@ jobs:
       - name:  Initializtion envronment
         run: |
           sudo mkdir -p /docker
+          sudo chown $USER:$GROUPS /workdir
+      - name: direcotory
+        run: |
           ln -sf /docker $GITHUB_WORKSPACE
       
       - name: Build the Docker image
