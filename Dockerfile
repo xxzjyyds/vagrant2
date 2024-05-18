@@ -44,6 +44,6 @@ RUN /bin/sh -c set -eux; pip install pip --upgrade && pip install --no-cache-dir
 ENV TZ=Asia/Shanghai
 
 # 指定ocxzlab主程序版本
-ENV VAGRANT_VERSION=2.5.10
+ENV VAGRANT_VERSION=v2.5.10
 
 RUN /bin/sh -c set -eux; wget -O vagrant.tar.gz "https://github.com/xxzjyyds/vagrant/releases/download/$VAGRANT_VERSION/vagrant_linux-$VAGRANT_VERSION.tar.gz"; tar zxf ./vagrant.tar.gz; mv vagrant /etc/vagrant && rm -rf ./vagrant.tar.gz # buildkit
