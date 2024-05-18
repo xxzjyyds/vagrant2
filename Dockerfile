@@ -3,6 +3,9 @@ FROM alpine:3.17.6
 # 指定command环境变量
 ENV PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
+# 指定 LANG
+ENV LANG=C.UTF-8
+
 # 安装依赖环境
 RUN /bin/sh -c set -eux; apk add --no-cache gpg dpkg dpkg-dev make gcc gdbm-dev libc-dev libffi-dev libnsl-dev libtirpc-dev linux-headers ncurses-dev openssl-dev pax-utils readline-dev sqlite-dev tcl-dev tk tk-dev util-linux-dev zlib-dev
 
@@ -30,12 +33,17 @@ ENV PYTHON_GET_PIP_SHA256=dfe9fd5c28dc98b5ac17979a953ea550cec37ae1b47a5116007395
 # 下载pip文件并安装pip
 RUN /bin/sh -c set -eux; wget -O get-pip.py "$PYTHON_GET_PIP_URL"; echo "$PYTHON_GET_PIP_SHA256 *get-pip.py" | sha256sum -c -; export PYTHONDONTWRITEBYTECODE=1; python3 get-pip.py --disable-pip-version-check --no-cache-dir --no-compile "pip==$PYTHON_PIP_VERSION" "setuptools==$PYTHON_SETUPTOOLS_VERSION" && rm -f get-pip.py; pip --version
 
+CMD ["python3"]
+
 # ansible 版本
 ENV ANSIBLE_VERSION=2.14.3
 
 # 安装ansible
-RUN /bin/sh -c set -eux; pip install --user ansible-core==$ANSIBLE_VERSION && cp /root/.local/bin/* /usr/local/bin/
+RUN /bin/sh -c set -eux; pip install pip --upgrade && pip install --no-cache-dir --user ansible-core==$ANSIBLE_VERSION ansible&& cp /root/.local/bin/* /usr/local/bin/ && rm -rf /var/cache/apk/*  && rm -rf /root/.cache 
+
+ENV TZ=Asia/Shanghai
 
 # 指定ocxzlab主程序版本
-ENV VAGRANT=3.0.1
-CMD ["seelp 200000"]
+ENV VAGRANT=2.5.10
+
+RUN /bin/sh -c set -eux; wget https://github.com/xxzjyyds/vagrant/releases/download/"$VAGRANT"/vagrant_linux-"$VAGRANT".tar.gz && tar zxf ./vagrant_linux-"$VAGRANT".tar.gz && mv vagrant /etc/vagrant && rm -rf ./vagrant_linux-"$VAGRANT".tar.gz # buildkit
