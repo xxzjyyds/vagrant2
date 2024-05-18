@@ -28,9 +28,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Init env start
-        run: echo "start"
         
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
