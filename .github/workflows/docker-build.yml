@@ -15,6 +15,8 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+env:
+  DOCKER_MIRROR_LIBRARY: ocxzlab/vagrant
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -45,8 +47,9 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
+        # Specify Docker Hub Remote Library
           images: |
-            ocxzlab/vagrant
+            $DOCKER_MIRROR_LIBRARY
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
             type=ref,event=tag
