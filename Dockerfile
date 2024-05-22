@@ -39,7 +39,7 @@ CMD ["python3"]
 ENV ANSIBLE_VERSION=2.14.3
 
 # 安装ansible
-RUN /bin/sh -c set -eux; pip install pip --upgrade && pip install --user ansible-core==$ANSIBLE_VERSION && cp /root/.local/bin/* /usr/local/bin/ && rm -rf /var/cache/apk/*  && rm -rf /root/.cache && rm /root/.local/bin/*
+RUN /bin/sh -c set -eux; pip install pip --upgrade && pip install --user ansible-core=="$ANSIBLE_VERSION" && cp /root/.local/bin/* /usr/local/bin/ && rm -rf /var/cache/apk/*  && rm -rf /root/.cache && rm /root/.local/bin/*
 
 ENV TZ=Asia/Shanghai
 
