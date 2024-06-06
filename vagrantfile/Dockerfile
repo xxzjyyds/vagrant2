@@ -19,8 +19,8 @@ COPY vagrantfile/VagrantFile_favicon.ico /var/www/vagrantfile/dist/favicon.ico
 COPY vagrantfile/VagrantFile_logo.svg /var/www/vagrantfile/dist/img/logo.svg
 COPY vagrantfile/VagrantFile_logo.png /var/www/vagrantfile/dist/img/logo.png
 WORKDIR "/var/www/vagrantfile/"
-RUN cp configuration_sample.php configuration.php
-RUN chmod +x environment.sh && bash environment.sh
+ENV FILE_PATH=configuration.php
+RUN cp configuration_sample.php configuration.php && chmod +x environment.sh && sed -i "s/ 100 \* 1024 \* 1024, \/\/ 100MB/ 20 \* 1024 \* 1024 \* 1024, \/\/ 20GB/g" $FILE_PATH
 RUN composer install
 RUN composer require league/flysystem-sftp:^1.0 -W
 RUN composer require league/flysystem-aws-s3-v3:^1.0 -W
@@ -31,6 +31,7 @@ RUN npm run lint
 #RUN npm run test:e2e
 RUN rm -rf node_modules frontend tests docs .git .github
 RUN rm README.md couscous.yml repository/.gitignore babel.config.js cypress* .env* .eslint* .gitignore jest.* .php_cs* phpunit* postcss* vue*
+ENTRYPOINT /bin/bash /var/www/vagrantfile/environment.sh
 
 #################################
 # stage production
