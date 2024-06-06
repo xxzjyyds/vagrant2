@@ -44,7 +44,7 @@ jobs:
         with:
         # Specify Docker Hub Remote Library
           images: |
-            ocxzlab/vagrant
+            ocxzlab/vagrantfile
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
             type=ref,event=tag
@@ -54,7 +54,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: Dockerfile
+          file: vagrantfile/Dockerfile
           platforms: linux/amd64,linux/arm64/v8,linux/386
           push: true
           tags: ${{ steps.meta.outputs.tags }}
