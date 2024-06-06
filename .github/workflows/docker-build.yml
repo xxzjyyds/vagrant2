@@ -12,8 +12,6 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-env:
-  BUILD_DIR: vargrantfile/
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -55,7 +53,7 @@ jobs:
       - name: Build and push streampark
         uses: docker/build-push-action@v3
         with:
-          context: $BUILD_DIR
+          context: vargrantfile/
           file: Dockerfile
           platforms: linux/amd64,linux/arm64/v8
           push: true
