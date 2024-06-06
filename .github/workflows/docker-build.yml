@@ -54,10 +54,12 @@ jobs:
             type=ref,event=branch
 
       - name: Build and push streampark
+        env:
+          DOCKERFILE_DIR: vagrantfile/Dockerfile
         uses: docker/build-push-action@v3
         with:
-          context: vagrantfile
-          file: Dockerfile
+          context: .
+          file: $DOCKERFILE_DIR
           platforms: linux/amd64,linux/arm64/v8
           push: true
           tags: ${{ steps.meta.outputs.tags }}
