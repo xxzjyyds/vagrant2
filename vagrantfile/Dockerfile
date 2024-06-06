@@ -31,7 +31,6 @@ RUN npm run lint
 #RUN npm run test:e2e
 RUN rm -rf node_modules frontend tests docs .git .github
 RUN rm README.md couscous.yml repository/.gitignore babel.config.js cypress* .env* .eslint* .gitignore jest.* .php_cs* phpunit* postcss* vue*
-ENTRYPOINT /bin/bash /var/www/vagrantfile/environment.sh
 
 #################################
 # stage production
@@ -65,5 +64,5 @@ VOLUME /var/www/vagrantfile/repository
 VOLUME /var/www/vagrantfile/private
 
 USER www-data
-
+ENTRYPOINT /bin/bash /var/www/vagrantfile/environment.sh
 CMD ["apache2-foreground"]
