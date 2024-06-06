@@ -64,5 +64,4 @@ VOLUME /var/www/vagrantfile/repository
 VOLUME /var/www/vagrantfile/private
 
 USER www-data
-ENTRYPOINT /bin/bash /var/www/vagrantfile/environment.sh
-CMD ["apache2-foreground"]
+CMD ["/var/www/vagrantfile/environment.sh"]
