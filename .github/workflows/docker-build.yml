@@ -53,7 +53,7 @@ jobs:
       - name: Build and push streampark
         uses: docker/build-push-action@v3
         with:
-          context: ./vagrantfile/
+          context: /vagrantfile/
           file: Dockerfile
           platforms: linux/amd64,linux/arm64/v8
           push: true
