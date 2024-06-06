@@ -14,10 +14,10 @@ RUN docker-php-ext-install zip
 RUN docker-php-ext-enable zip
 
 RUN git clone https://github.com/filegator/filegator.git /var/www/vagrantfile/
-COPY VagrantFile_env.sh /var/www/vagrantfile/environment.sh
-COPY VagrantFile_favicon.ico /var/www/vagrantfile/dist/favicon.ico
-COPY VagrantFile_logo.svg /var/www/vagrantfile/dist/img/logo.svg
-COPY VagrantFile_logo.png /var/www/vagrantfile/dist/img/logo.png
+COPY vagrantfile/VagrantFile_env.sh /var/www/vagrantfile/environment.sh
+COPY vagrantfile/VagrantFile_favicon.ico /var/www/vagrantfile/dist/favicon.ico
+COPY vagrantfile/VagrantFile_logo.svg /var/www/vagrantfile/dist/img/logo.svg
+COPY vagrantfile/VagrantFile_logo.png /var/www/vagrantfile/dist/img/logo.png
 WORKDIR "/var/www/vagrantfile/"
 RUN cp configuration_sample.php configuration.php
 RUN chmod +x environment.sh && bash environment.sh
