@@ -18,3 +18,6 @@ if [[ -n "$MYSQL_USER_NAME" && -n "$MYSQL_USER_PASSWORD" && -n "$MYSQL_DATABASE"
    sed -i "s/\\\Filegator\\\Services\\\Auth\\\Adapters\\\JsonFile/\\\Filegator\\\Services\\\Auth\\\Adapters\\\Database/g" $FILE_PATH
    sed -i "s/'file' => __DIR__\.'\/private\/users.json',/'driver' => 'mysqli',\n        'host' => 'localhost',\n        'username' => 'root',\n        'password' => 'password',\n        'database' => 'filegator',/g" $FILE_PATH
 fi
+
+# 启动apache
+apache2-foreground
