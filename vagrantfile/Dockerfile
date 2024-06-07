@@ -13,7 +13,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN docker-php-ext-install zip
 RUN docker-php-ext-enable zip
 
-RUN git clone https://github.com/filegator/filegator.git /var/www/vagrantfile/
+RUN git clone https://github.com/xxzjyyds/vagrantfile.git /var/www/vagrantfile/
 COPY vagrantfile/VagrantFile_env.sh /var/www/vagrantfile/environment.sh
 WORKDIR "/var/www/vagrantfile/"
 ENV FILE_PATH=configuration.php
