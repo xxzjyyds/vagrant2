@@ -14,7 +14,6 @@ RUN docker-php-ext-install zip
 RUN docker-php-ext-enable zip
 
 RUN git clone https://github.com/xxzjyyds/vagrantfile.git /var/www/vagrantfile/
-COPY vagrantfile/VagrantFile_env.sh /var/www/vagrantfile/environment.sh
 WORKDIR "/var/www/vagrantfile/"
 ENV FILE_PATH=configuration.php
 RUN cp configuration_sample.php $FILE_PATH && chmod +x environment.sh
