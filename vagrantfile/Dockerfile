@@ -16,7 +16,8 @@ RUN docker-php-ext-enable zip
 RUN git clone https://github.com/xxzjyyds/vagrantfile.git /var/www/vagrantfile/
 WORKDIR "/var/www/vagrantfile/"
 ENV FILE_PATH=configuration.php
-RUN cp configuration_sample.php $FILE_PATH && chmod +x environment.sh
+ENV START_FILE_PATH=environment.sh
+RUN cp configuration_sample.php $FILE_PATH && cp environment_sample.sh $START_FILE_PATH&& chmod +x $START_FILE_PATH
 RUN composer install
 RUN composer require league/flysystem-sftp:^1.0 -W
 RUN composer require league/flysystem-aws-s3-v3:^1.0 -W
