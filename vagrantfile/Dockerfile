@@ -62,4 +62,4 @@ VOLUME /var/www/vagrantfile/repository
 VOLUME /var/www/vagrantfile/private
 
 USER www-data
-CMD ["bash","/var/www/vagrantfile/environment.sh"]
+CMD ["/var/www/vagrantfile/environment.sh"]
